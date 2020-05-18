@@ -26,13 +26,13 @@ def port_remover(adress):
 # новый столбик с ip адресом источника
 data['abon_ip'] = data['Src_IP_Addr:Port'].apply(port_remover)
 
-# выводим график
-data.groupby('session_time').agg({'Bytes':'sum'}).plot(figsize=(15,5), title='График зависимости объема трафика от времени')
-plt.show()
-
 # делаем срез данных по интересующему нас абоненту
 abon_data = data.query('@abon in abon_ip')
 abon_traffic = abon_data['Bytes'].sum()
+
+# выводим график
+abon_data.groupby('session_time').agg({'Bytes':'sum'}).plot(figsize=(15,5), title='График зависимости объема трафика от времени')
+plt.show()
 
 # фукнция для расчета тарификации
 def tarification(bytes):
