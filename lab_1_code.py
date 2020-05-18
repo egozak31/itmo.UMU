@@ -4,7 +4,7 @@ import math
 
 # загружаем данные
 data = pd.read_csv('data.csv')
-display(data)
+print(data)
 
 abon = 915642913
 
@@ -17,11 +17,13 @@ sms10_ = 2
 incoming_stat = data.query('msisdn_dest == @abon')
 outcoming_stat = data.query('msisdn_origin == @abon')
 
+print()
 print("Входящие звонки выбранного абонента:")
-display(incoming_stat)
+print(incoming_stat)
 print()
 print("Исходящие звонки и смс выбранного абонента:")
-display(outcoming_stat)
+print(outcoming_stat)
+print()
 
 # считаем тариф по исходящим звонкам
 outcoming_calls_bill = math.ceil(outcoming_stat['call_duration']) * k
